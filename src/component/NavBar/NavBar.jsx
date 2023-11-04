@@ -9,6 +9,9 @@ const NavBar = () => {
     // const { userSignOut, user } = useContext(AuthContext)
     // const [mode, setMode] = useState("light");
 
+    //fake use state if production then delete this
+    const user = 0;
+
     // const handleToggle = () => {
     //     const html = document.documentElement
     //     if (mode == "light") {
@@ -32,8 +35,8 @@ const NavBar = () => {
     }, [])
 
     return (
-        <div className="dark:bg-black">
-            <div className="navbar bg-base-100 dark:bg-black lg:w-10/12 md:w-10/12 m-auto ">
+        <div className="dark:bg-black absolute w-full">
+            <div className="navbar text-white  dark:bg-black lg:w-10/12 md:w-10/12 m-auto ">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -138,7 +141,7 @@ const NavBar = () => {
                         }
                     </div> */}
 
-                    {/* {
+                    {
                         user ? <>
                             <div className='flex items-center gap-3 pr-4'>
                                 <p className='text-xs'>{user.displayName}</p>
@@ -153,7 +156,7 @@ const NavBar = () => {
                             <Link ><button onClick={userSignOut} className="text-white bg-stone-700 rounded-lg px-5 md:block hidden py-2 text-lg font-bold">LogOut</button> </Link>
                         </>
                             : <Link to={'/logIn'} className="text-white bg-stone-700 rounded-lg px-5  py-2 text-lg font-bold">LogIn</Link>
-                    } */}
+                    }
                 </div>
             </div>
         </div>
