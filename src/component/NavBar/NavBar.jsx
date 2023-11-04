@@ -9,6 +9,12 @@ const NavBar = () => {
     // const { userSignOut, user } = useContext(AuthContext)
     // const [mode, setMode] = useState("light");
 
+
+    //fake 
+    const userSignOut = () =>{
+
+    }
+
     //fake use state if production then delete this
     const user = 0;
 
