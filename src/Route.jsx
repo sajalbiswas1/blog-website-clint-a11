@@ -4,6 +4,7 @@ import Home from "./component/Home/Home";
 import LogIn from "./component/Page/LogIn";
 import SignUp from "./component/Page/SignUp";
 import AddBlog from "./component/Page/AddBlog";
+import BlogDetails from "./component/Page/BlogDetails";
 
 const router = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
             {
                 path:'addblog',
                 element: <AddBlog></AddBlog>
+            },
+            {
+                path: 'details/:id',
+                element: <BlogDetails></BlogDetails>
             }
 
         ]
