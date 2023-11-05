@@ -1,22 +1,16 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
-// import { AuthContext } from "../AuthProvider/AuthProvider";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 // import { BsBrightnessHigh } from 'react-icons/bs';
 // import { MdDarkMode } from "react-icons/md";
 
 const NavBar = () => {
 
-    // const { userSignOut, user } = useContext(AuthContext)
+    const { userSignOut, user } = useContext(AuthContext)
     // const [mode, setMode] = useState("light");
 
 
-    //fake 
-    const userSignOut = () =>{
-
-    }
-
-    //fake use state if production then delete this
-    const user = 0;
+    
 
     // const handleToggle = () => {
     //     const html = document.documentElement

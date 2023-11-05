@@ -128,7 +128,7 @@ const LogIn = () => {
             </div>
         </div>
 
-        <p className="text-base font-semibold text-center">Do not Have An Account? <Link className="text-[#5b66e0]" to={'/signUp'}> Register</Link></p>
+        <p className="text-base font-semibold text-center">Do not Have An Account? <Link className="text-[#5b66e0]" to={'/signup'}> Register</Link></p>
         <ToastContainer />
     </div>
     );
