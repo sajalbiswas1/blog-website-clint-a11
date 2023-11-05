@@ -1,5 +1,11 @@
+import { useContext } from "react";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
+import useAxiosApi from "../Hooks/useAxiosApi";
 
 const AddBlog = () => {
+    const axiosApi = useAxiosApi()
+    const {user}=useContext(AuthContext)
+    const postDate = new Date();
     const handleAddBlog = event => {
         event.preventDefault();
         const form = event.target;
@@ -8,8 +14,21 @@ const AddBlog = () => {
         const category = form.category.value;
         const shortDescription = form.shortDescription.value;
         const longDescription = form.longDescription.value;
+        const blog = {title, imgLink, category, shortDescription, longDescription,postDate,userEmail:user.email}
+        console.log(blog)
+        axiosApi.post('/blogs',{
+            title, 
+            imgLink, 
+            category, 
+            shortDescription, 
+            longDescription,
+            postDate,
+            userEmail:user.email
+        })
+        .then(res =>{
+            console.log(res.data)
+        })
 
-        console.log(title,imgLink,category,shortDescription,longDescription)
     }
     return (
         <div className="w-10/12 m-auto pt-20">
@@ -39,9 +58,9 @@ const AddBlog = () => {
                     </label>
                     {/* <input type="drop-down" placeholder="Image Url" className="input input-bordered"  /> */}
                     <select name="category" className="input input-bordered">
-                        <option value="Travel">Travel</option>
                         <option value="Technology">Technology</option>
-                        <option value="Natural">Natural</option>
+                        <option value="Programming">Programming</option>
+                        <option value="Travel">Travel</option>
                         <option value="Health">Health</option>
                         <option value="Food">Food</option>
                         <option value="Self-Improvement">Self-Improvement</option>
