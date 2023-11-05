@@ -1,10 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosApi from "../Hooks/useAxiosApi";
+import RecentBlogCard from "./RecentBlogCard";
 
 const RecentBlogs = () => {
     const axiosApi = useAxiosApi()
-    const url = '/blog'
-    const {data,  isPending} = useQuery({
+    const url = '/blogs'
+    const {data: blogs,  isPending} = useQuery({
         queryKey: ['recentData'],
         queryFn: async()=>{
            const fetchData = await axiosApi.get(url)
@@ -13,13 +14,18 @@ const RecentBlogs = () => {
         
     })
 
-    console.log(data,isPending)
+    console.log(blogs,isPending)
     if(isPending){
         return  <h3>Loading.....</h3>
     }
     return (
-        <div>
-            <h1>Recent blogssssssssssssssssssssss</h1>
+        <div className="bg-[#F1F2F2]">
+            {
+                blogs?.map(blog => <RecentBlogCard 
+                    key={blog._id} 
+                    blog={blog}
+                ></RecentBlogCard>)
+            }
         </div>
     );
 };
