@@ -5,7 +5,7 @@ import RecentBlogCard from "./RecentBlogCard";
 const RecentBlogs = () => {
     const axiosApi = useAxiosApi()
     const url = '/blogs'
-    const {data: blogs,  isPending} = useQuery({
+    const {data: blogs,error,  isPending} = useQuery({
         queryKey: ['recentData'],
         queryFn: async()=>{
            const fetchData = await axiosApi.get(url)
@@ -15,6 +15,7 @@ const RecentBlogs = () => {
     })
 
     console.log(blogs,isPending)
+    console.log(error)
     if(isPending){
         return  <h3>Loading.....</h3>
     }

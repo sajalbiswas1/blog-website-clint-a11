@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 const AxiosPost = () => {
-    const blogsPost = axios.post('http://localhost:5000/blogs')
+    const blogsPost = axios.post('https://blog-website-server-ma11.vercel.app')
     return blogsPost.data;
 };
 
