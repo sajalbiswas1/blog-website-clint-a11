@@ -1,10 +1,16 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import useAxiosApi from "../Hooks/useAxiosApi";
 import RecentBlogCard from "../Section/RecentBlogCard";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const BlogsAll = () => {
-    const axiosApi = useAxiosApi()
+    const {user}=useContext(AuthContext);
+    const axiosApi = useAxiosApi();
+    const [postWishlist,setPostWishlist]= useState({})
+
     const url = '/blogs'
+    const wishlistUrl = '/wishlists'
     const {data: blogs,error,  isPending} = useQuery({
         queryKey: ['recentData'],
         queryFn: async()=>{
@@ -13,6 +19,25 @@ const BlogsAll = () => {
         }
         
     })
+
+    //wishlist post
+    const { isPending: isPendingWishlist, error:wishlistError, data: postWishlistData, mutate } = useMutation({
+        mutationFn: async () => { 
+            const commentPost = await axiosApi.post(wishlistUrl, postWishlist)
+            return commentPost.data
+        },
+        mutationKey: ['commentPost']
+    })
+    const haldelWishlist = (blog)=>{
+            const {_id,category,imgLink,postDate,shortDescription,title} = blog
+            const email = user.email;
+        const wishlistItem = {_id,category,imgLink,postDate,shortDescription,title,email}
+        setPostWishlist(wishlistItem)
+        mutate(wishlistItem)
+        console.log(_id,category,imgLink,postDate,shortDescription,title,email) 
+    }
+    console.log(postWishlistData,isPendingWishlist)
+    console.log(wishlistError)
 
     console.log(blogs,isPending)
     console.log(error)
@@ -27,6 +52,7 @@ const BlogsAll = () => {
                 <form className="md:flex items-center justify-between">
                 <div className="px-2 ">
                     <select name="category" className="border rounded-lg border-black font-medium p-3">
+                        <option value="All">All</option>
                         <option value="Technology">Technology</option>
                         <option value="Programming">Programming</option>
                         <option value="Travel">Travel</option>
@@ -47,6 +73,8 @@ const BlogsAll = () => {
                 blogs?.map(blog => <RecentBlogCard 
                     key={blog._id} 
                     blog={blog}
+                    isPendingWishlist={isPendingWishlist}
+                    haldelWishlist={haldelWishlist}
                 ></RecentBlogCard>)
             }
         </div>
