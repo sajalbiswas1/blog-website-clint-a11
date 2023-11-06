@@ -59,7 +59,7 @@ const NavBar = () => {
                                     textDecoration: isActive ? "underline" : '',
                                 };
                             }}>Add Blog</NavLink></li>
-                            <li><NavLink className="md:text-xl " to={'/allblog'} style={({ isActive }) => {
+                            <li><NavLink className="md:text-xl " to={'/blogsall'} style={({ isActive }) => {
                                 return {
                                     fontWeight: isActive ? "bold" : "",
                                     color: isActive ? "red" : "",
@@ -108,7 +108,7 @@ const NavBar = () => {
                                 textDecoration: isActive ? "underline" : '',
                             };
                         }}>Add Blog</NavLink></li>
-                        <li><NavLink className="md:text-xl " to={'/allbolg'} style={({ isActive }) => {
+                        <li><NavLink className="md:text-xl " to={'/blogsall'} style={({ isActive }) => {
                             return {
                                 fontWeight: isActive ? "bold" : "",
                                 color: isActive ? "red" : "",

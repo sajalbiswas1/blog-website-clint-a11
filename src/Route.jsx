@@ -5,6 +5,9 @@ import LogIn from "./component/Page/LogIn";
 import SignUp from "./component/Page/SignUp";
 import AddBlog from "./component/Page/AddBlog";
 import BlogDetails from "./component/Page/BlogDetails";
+// import BlogsAll from "./component/Page/BlogsAll";
+import Wishlist from "./component/Page/Wishlist";
+import BlogsAll from "./component/Page/BlogsAll";
 
 const router = createBrowserRouter([
     {
@@ -31,7 +34,15 @@ const router = createBrowserRouter([
             {
                 path: 'details/:id',
                 element: <BlogDetails></BlogDetails>
-            }
+            },
+            {
+                path: 'wishlist',
+                element: <Wishlist></Wishlist>
+            },
+            {
+                path: 'blogsall',
+                element: <BlogsAll></BlogsAll>
+            },
 
         ]
     },
