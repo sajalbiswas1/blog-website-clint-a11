@@ -6,12 +6,12 @@ import { ToastContainer } from "react-toastify";
 const Root = () => {
     return (
         <div>
-           <div className="relative">
+           <div className="relative z-10">
            <NavBar></NavBar>
            </div>
             <Outlet></Outlet>
             <Footer></Footer>
-            <ToastContainer />
+            <ToastContainer position="top-center" />
         </div>
     );
 };

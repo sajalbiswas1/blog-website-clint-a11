@@ -1,49 +1,59 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+// import { useMutation } from "@tanstack/react-query";
 import useAxiosApi from "../Hooks/useAxiosApi";
-import RecentBlogCard from "../Section/RecentBlogCard";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import BlogAllCard from "./BlogAllCard";
+import { useNavigate } from "react-router-dom";
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const BlogsAll = () => {
     const {user}=useContext(AuthContext);
+    const [postWishlistData, setPostWishlistData] = useState([])
     const axiosApi = useAxiosApi();
-    const [postWishlist,setPostWishlist]= useState({})
-
+    // const [postWishlist,setPostWishlist]= useState({})
+    const [blogs,setBlogs]= useState([])
+    const [isLoading, setLoading]= useState(false)
+    const navigate = useNavigate()
     const url = '/blogs'
     const wishlistUrl = '/wishlists'
-    const {data: blogs,error,  isPending} = useQuery({
-        queryKey: ['recentData'],
-        queryFn: async()=>{
-           const fetchData = await axiosApi.get(url)
-           return fetchData.data
-        }
-        
-    })
 
-    //wishlist post
-    const { isPending: isPendingWishlist, error:wishlistError, data: postWishlistData, mutate } = useMutation({
-        mutationFn: async () => { 
-            const commentPost = await axiosApi.post(wishlistUrl, postWishlist)
-            return commentPost.data
-        },
-        mutationKey: ['commentPost']
-    })
-    const haldelWishlist = (blog)=>{
-            const {_id,category,imgLink,postDate,shortDescription,title} = blog
+    useEffect(()=>{
+        axiosApi.get(url)
+        .then(res =>{
+            console.log(res.data)
+            setBlogs(res.data)
+        })
+        .catch(error =>{
+            console.log(error)
+        })
+
+    },[axiosApi])
+
+    const haldelWishlistButton = (blog)=>{
+        setLoading(true)
+            const {_id:id,category,imgLink,postDate,shortDescription,title} = blog
             const email = user.email;
-        const wishlistItem = {_id,category,imgLink,postDate,shortDescription,title,email}
-        setPostWishlist(wishlistItem)
-        mutate(wishlistItem)
-        console.log(_id,category,imgLink,postDate,shortDescription,title,email) 
+        const wishlistItem = {id,category,imgLink,postDate,shortDescription,title,email}
+        axiosApi.post(wishlistUrl,wishlistItem)
+        .then(res =>{
+            console.log(res.data)
+            setPostWishlistData(res.data)
+            if(res.data.acknowledged){
+                notify()
+                navigate('/wishlist')
+            }
+        })
+        .catch(error=>{
+            console.log(error)
+        })
+         console.log(id,category,imgLink,postDate,shortDescription,title,email) 
     }
-    console.log(postWishlistData,isPendingWishlist)
-    console.log(wishlistError)
-
-    console.log(blogs,isPending)
-    console.log(error)
-    if(isPending){
-        return  <h3>Loading.....</h3>
-    }
+    //toast
+    const notify = () => toast.success("Wishlist Add");
+    console.log(postWishlistData)
+   
     return (
         <div className="bg-[#F1F2F2]">
             <div className="h-20 bg-slate-300">
@@ -70,12 +80,12 @@ const BlogsAll = () => {
                 </form>
             </div>
             {
-                blogs?.map(blog => <RecentBlogCard 
-                    key={blog._id} 
+                blogs?.map((blog,index) => <BlogAllCard
+                    key={index} 
                     blog={blog}
-                    isPendingWishlist={isPendingWishlist}
-                    haldelWishlist={haldelWishlist}
-                ></RecentBlogCard>)
+                    isLoading={isLoading} 
+                    haldelWishlistButton={haldelWishlistButton}
+                ></BlogAllCard>)
             }
         </div>
     );

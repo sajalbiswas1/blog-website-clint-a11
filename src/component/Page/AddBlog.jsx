@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import useAxiosApi from "../Hooks/useAxiosApi";
+import Swal from "sweetalert2";
 
 const AddBlog = () => {
     const axiosApi = useAxiosApi()
@@ -16,22 +17,25 @@ const AddBlog = () => {
         const longDescription = form.longDescription.value;
         const blog = {title, imgLink, category, shortDescription, longDescription,postDate,userEmail:user.email}
         console.log(blog)
-        axiosApi.post('/blogs',{
-            title, 
-            imgLink, 
-            category, 
-            shortDescription, 
-            longDescription,
-            postDate,
-            userEmail:user.email
-        })
+        axiosApi.post('/blogs',blog)
         .then(res =>{
             console.log(res.data)
+            if(res.data.acknowledged)
+            Swal.fire({
+                title: 'Success!',
+                text: 'Products add',
+                icon: 'success',
+                confirmButtonText: 'Ok'
+              })
         })
 
     }
     return (
-        <div className="w-10/12 m-auto pt-20">
+       <div>
+        <div className="h-20 bg-slate-500">
+
+        </div>
+         <div className="w-10/12 m-auto pt-20">
             <div className="border bg-blue-100 text-black">
                 <div>
                     <h2 className="text-center mt-5 text-3xl font-bold">Add Blog</h2>
@@ -86,6 +90,7 @@ const AddBlog = () => {
             </form>
         </div>
         </div>
+       </div>
     );
 };
 

@@ -42,8 +42,8 @@ const NavBar = () => {
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                            <li><NavLink className="md:text-xl " to={'/'} style={({ isActive }) => {
+                        <ul tabIndex={0} className="men menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                            <li className="text-black"><NavLink className="md:text-xl " to={'/'} style={({ isActive }) => {
                                 return {
                                     fontWeight: isActive ? "bold" : "",
                                     color: isActive ? "red" : "",
@@ -51,7 +51,7 @@ const NavBar = () => {
                                     textDecoration: isActive ? "underline" : '',
                                 };
                             }}>Home</NavLink></li>
-                            <li><NavLink className="md:text-xl " to={'/addblog'} style={({ isActive }) => {
+                            <li className="text-black"><NavLink className="md:text-xl " to={'/addblog'} style={({ isActive }) => {
                                 return {
                                     fontWeight: isActive ? "bold" : "",
                                     color: isActive ? "red" : "",
@@ -59,7 +59,7 @@ const NavBar = () => {
                                     textDecoration: isActive ? "underline" : '',
                                 };
                             }}>Add Blog</NavLink></li>
-                            <li><NavLink className="md:text-xl " to={'/blogsall'} style={({ isActive }) => {
+                            <li className="text-black"><NavLink className="md:text-xl " to={'/blogsall'} style={({ isActive }) => {
                                 return {
                                     fontWeight: isActive ? "bold" : "",
                                     color: isActive ? "red" : "",
@@ -67,7 +67,7 @@ const NavBar = () => {
                                     textDecoration: isActive ? "underline" : '',
                                 };
                             }}>All blog</NavLink></li>
-                            <li><NavLink className="md:text-xl " to={'/featureblog'} style={({ isActive }) => {
+                            <li className="text-black"><NavLink className="md:text-xl " to={'/featureblog'} style={({ isActive }) => {
                                 return {
                                     fontWeight: isActive ? "bold" : "",
                                     color: isActive ? "red" : "",
@@ -75,7 +75,7 @@ const NavBar = () => {
                                     textDecoration: isActive ? "underline" : '',
                                 };
                             }}>Feature Blog</NavLink></li>
-                            <li><NavLink className="md:text-xl " to={'/wishlist'} style={({ isActive }) => {
+                            <li className="text-black"><NavLink className="md:text-xl " to={'/wishlist'} style={({ isActive }) => {
                                 return {
                                     fontWeight: isActive ? "bold" : "",
                                     color: isActive ? "red" : "",
