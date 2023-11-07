@@ -42,7 +42,9 @@ const BlogsAll = () => {
             setPostWishlistData(res.data)
             if(res.data.acknowledged){
                 notify()
-                navigate('/wishlist')
+                if(user.email){
+                    navigate('/wishlist')
+                }
             }
         })
         .catch(error=>{

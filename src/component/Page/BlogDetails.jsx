@@ -82,7 +82,7 @@ const BlogDetails = () => {
             <div className="h-20 bg-slate-500">
 
             </div>
-            <div className='border max-w-4xl bg-white mx-auto mb-5'>
+            <div className='border max-w-4xl  mt-2 bg-white mx-auto mb-5'>
                 <img className='max-h-72 w-full  object-cover' src={imgLink} alt='blog image' />
                 <h3 className='px-5 font-bold text-3xl mt-4'>{title}</h3>
                 <p className='px-5 mb-4 text-xl mt-3'>{shortDescription}</p><br />
@@ -107,7 +107,7 @@ const BlogDetails = () => {
                             <div className="flex gap-2 mb-5">
                             <img className="w-10 h-10 mt-2 rounded-full" src={comment?.userImg} alt="" />
                             <div className="border rounded-xl w-full p-3">
-                                <h2 className="mb-2 font-bold text-xl">{comment.userName}   <span className="text-xs font-normal"> Post Date</span></h2>
+                                <h2 className="mb-2 font-bold text-xl">{comment.userName}   <span className="text-xs font-normal"> {comment.postDate.slice(0,10)}</span></h2>
                                 <p className="text-xl">{comment.userComment}</p>
                             </div>
                             </div>
