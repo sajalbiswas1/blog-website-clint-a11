@@ -8,6 +8,7 @@ import BlogDetails from "./component/Page/BlogDetails";
 // import BlogsAll from "./component/Page/BlogsAll";
 import Wishlist from "./component/Page/Wishlist";
 import BlogsAll from "./component/Page/BlogsAll";
+import UpdateBlog from "./component/Page/UpdateBlog";
 
 const router = createBrowserRouter([
     {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
             {
                 path: 'blogsall',
                 element: <BlogsAll></BlogsAll>
+            },
+            {
+                path: 'update/:id',
+                element: <UpdateBlog></UpdateBlog>
             },
 
         ]

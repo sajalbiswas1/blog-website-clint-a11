@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useAxiosApi from "../Hooks/useAxiosApi";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
@@ -15,7 +15,10 @@ const BlogDetails = () => {
     const url = `/blogs/${id}` // get data , specific id url
     const CommentUrl = `/blogs/comments` //  comment post data url
     const allCommentUrl = `/blogsComments/${id}` // get all comment this blog url
-    // const [thisBlog, setThisBlog] = useState([])
+
+    const { imgLink, shortDescription, title, longDescription,userEmail } = blog
+
+
     // get blog data
     useEffect(()=>{
         axiosApi.get(url)
@@ -32,6 +35,10 @@ const BlogDetails = () => {
     const handleForm = (e) => {
         e.preventDefault();
         const form = e.target;
+        if(userEmail == user?.email){
+            setEmptyField('Can not comment on won blog')
+            return;
+        }
         const userComment = form.text.value;
         const userImg = user?.photoURL
         const userName = user?.displayName
@@ -76,7 +83,6 @@ const BlogDetails = () => {
 
     },[allCommentUrl, axiosApi])
 
-    const { imgLink, shortDescription, title, longDescription } = blog
     return (
         <div className=" bg-[#F1F2F2]">
             <div className="h-20 bg-slate-500">
@@ -87,6 +93,10 @@ const BlogDetails = () => {
                 <h3 className='px-5 font-bold text-3xl mt-4'>{title}</h3>
                 <p className='px-5 mb-4 text-xl mt-3'>{shortDescription}</p><br />
                 <p className='px-5 mb-4 text-xl'>{longDescription}</p>
+                {
+                    userEmail == user?.email ? <Link to={`/update/${id}`}><button className="border text-xl font-semibold px-5 py-2 rounded-lg m-4 bg-stone-500 text-white hover:bg-stone-700">Update</button></Link>
+                    : ''
+                }
             </div>
             <div className="max-w-4xl mx-auto p-5 bg-white">
                 <h2 className="text-2xl font-bold ">Comment ({commentData.length})</h2>
@@ -103,11 +113,11 @@ const BlogDetails = () => {
                 </div>
                 <div>
                         {
-                           commentData.map(comment => <div key={comment._id}>
+                           commentData.map(comment => <div key={comment._id +109}>
                             <div className="flex gap-2 mb-5">
                             <img className="w-10 h-10 mt-2 rounded-full" src={comment?.userImg} alt="" />
                             <div className="border rounded-xl w-full p-3">
-                                <h2 className="mb-2 font-bold text-xl">{comment.userName}   <span className="text-xs font-normal"> {comment.postDate.slice(0,10)}</span></h2>
+                                <h2 className="mb-2 font-bold text-xl">{comment.userName}   </h2>
                                 <p className="text-xl">{comment.userComment}</p>
                             </div>
                             </div>
