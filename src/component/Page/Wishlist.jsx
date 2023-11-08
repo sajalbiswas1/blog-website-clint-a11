@@ -14,13 +14,13 @@ const Wishlist = () => {
     useEffect(() => {
         axiosApi.get(url)
         .then(res => {
-           
             setWishlists(res.data)
         })
         .catch(error=>{
             console.log(error)
         })
     }, [axiosApi, url])
+    console.log(user)
 
     //add wishlist
     const handleDelete =(id)=>{
@@ -61,6 +61,8 @@ const Wishlist = () => {
             <div className="h-20 bg-slate-500">
 
             </div>
+            <h3 className="text-3xl  md:max-w-2xl mt-8 w-11/12 px-2 m-auto mb-10 border-l-rose-600 border-l-4 font-bold">Your All Wishlist</h3>
+
             <div className="grid md:grid-cols-2 max-w-2xl mx-auto">
             {
                 wishlists.map(wishlist => <div key={wishlist._id}>

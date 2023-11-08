@@ -15,7 +15,7 @@ const AddBlog = () => {
         const category = form.category.value;
         const shortDescription = form.shortDescription.value;
         const longDescription = form.longDescription.value;
-        const blog = {title, imgLink, category, shortDescription, longDescription,postDate,userEmail:user.email}
+        const blog = {title, imgLink, category, shortDescription, longDescription,postDate,userEmail:user.email, userPhoto: user.photoURL,userName:user.displayName}
         console.log(blog)
         axiosApi.post('/blogs',blog)
         .then(res =>{
@@ -32,11 +32,11 @@ const AddBlog = () => {
     }
     return (
        <div>
-        <div className="h-20 bg-slate-500">
+        <div className="h-20  bg-slate-500">
 
         </div>
-         <div className="w-10/12 m-auto pt-20">
-            <div className="border bg-blue-100 text-black">
+         <div className="w-10/12 m-auto  p-20">
+            <div className="border rounded-lg bg-blue-100 text-black">
                 <div>
                     <h2 className="text-center mt-5 text-3xl font-bold">Add Blog</h2>
                 </div>

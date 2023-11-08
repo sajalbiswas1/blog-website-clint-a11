@@ -6,7 +6,7 @@ const RecentBlogCard = ({ blog, haldelWishlist }) => {
     const { _id, category, imgLink, shortDescription, title, } = blog;
     return (
         <div>
-            <div className='border max-w-2xl bg-white m-auto mb-5'>
+            <div className='border max-w-2xl bg-white m-auto mb-5 rounded-lg'>
                 <h3 className='px-5 text-sm mt-3'>Category: {category}</h3>
                 <h3 className='px-5 font-bold text-lg'>{title}</h3>
                 <p className='px-5 mb-4'>{shortDescription}</p>

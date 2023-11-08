@@ -12,7 +12,7 @@ const Subscrib = () => {
 
     }
     return (
-        <div className=" max-w-2xl mx-auto bg-slate-300 text-center mb-3">
+        <div className=" max-w-6xl mx-auto bg-slate-300 text-center my-6">
             <h3 className="text-3xl font-bold p-3">NewsLetter</h3>
             <form onSubmit={handleSubscribe}>
                 

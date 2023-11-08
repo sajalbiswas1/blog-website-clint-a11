@@ -48,10 +48,14 @@ const RecentBlogs = () => {
      console.log(id,category,imgLink,postDate,shortDescription,title,email) 
     }
     console.log(postWishlistData)
+    const bolgsRevers = [...blogs].reverse()
     return (
-        <div className="bg-[#F1F2F2]">
+        <div className="bg-[#F1F2F2] pt-10">
+             <div className="px-2">
+             <h3 className="text-3xl max-w-2xl px-2 m-auto mb-10 border-l-rose-600 border-l-4 font-bold">Recent Blogs</h3>
+             </div>
             {
-                blogs?.map((blog, index)=> <RecentBlogCard 
+                bolgsRevers.slice(0,6).map((blog, index)=> <RecentBlogCard 
                     key={index + 100} 
                     blog={blog}
                     haldelWishlist={haldelWishlist}

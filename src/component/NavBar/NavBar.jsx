@@ -35,7 +35,7 @@ const NavBar = () => {
     }, [])
 
     return (
-        <div className="dark:bg-black absolute w-full">
+        <div className="dark:bg-black absolute w-full overflow-hidden">
             <div className="navbar text-white  dark:bg-black lg:w-10/12 md:w-10/12 m-auto ">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -86,13 +86,13 @@ const NavBar = () => {
                         </ul>
                     </div>
                     <div className="flex items-center">
-                        <img className="w-16" src="" alt="" />
-                        <Link to={'/'}><p className="text-3xl font-bold flex flex-col">BloggerEx</p></Link>
+                        
+                        <Link to={'/'}><p className="text-2xl md:text-3xl font-bold flex  flex-col">BloggerEx</p></Link>
                     </div>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
-                        <li><NavLink className="md:text-xl " to={'/'} style={({ isActive }) => {
+                        <li><NavLink className="text-base hover:bg-white" to={'/'} style={({ isActive }) => {
                             return {
                                 fontWeight: isActive ? "bold" : "",
                                 color: isActive ? "red" : "",
@@ -100,7 +100,7 @@ const NavBar = () => {
                                 textDecoration: isActive ? "underline" : '',
                             };
                         }}>Home</NavLink></li>
-                        <li><NavLink className="md:text-xl " to={'/addblog'} style={({ isActive }) => {
+                        <li><NavLink className="text-base hover:bg-white" to={'/addblog'} style={({ isActive }) => {
                             return {
                                 fontWeight: isActive ? "bold" : "",
                                 color: isActive ? "red" : "",
@@ -108,7 +108,7 @@ const NavBar = () => {
                                 textDecoration: isActive ? "underline" : '',
                             };
                         }}>Add Blog</NavLink></li>
-                        <li><NavLink className="md:text-xl " to={'/blogsall'} style={({ isActive }) => {
+                        <li><NavLink className="text-base hover:bg-white" to={'/blogsall'} style={({ isActive }) => {
                             return {
                                 fontWeight: isActive ? "bold" : "",
                                 color: isActive ? "red" : "",
@@ -116,7 +116,7 @@ const NavBar = () => {
                                 textDecoration: isActive ? "underline" : '',
                             };
                         }}>All Blog</NavLink></li>
-                        <li><NavLink className="md:text-xl " to={'/featureblog'} style={({ isActive }) => {
+                        <li><NavLink className="text-base hover:bg-white" to={'/featureblog'} style={({ isActive }) => {
                             return {
                                 fontWeight: isActive ? "bold" : "",
                                 color: isActive ? "red" : "",
@@ -124,7 +124,7 @@ const NavBar = () => {
                                 textDecoration: isActive ? "underline" : '',
                             };
                         }}>Feature Blog</NavLink></li>
-                        <li><NavLink className="md:text-xl " to={'/wishlist'} style={({ isActive }) => {
+                        <li><NavLink className="text-base hover:bg-white" to={'/wishlist'} style={({ isActive }) => {
                             return {
                                 fontWeight: isActive ? "bold" : "",
                                 color: isActive ? "red" : "",
@@ -155,7 +155,10 @@ const NavBar = () => {
                             </div>
                             <Link ><button onClick={userSignOut} className="text-white bg-stone-700 rounded-lg px-5 md:block hidden py-2 text-lg font-bold">LogOut</button> </Link>
                         </>
-                            : <Link to={'/logIn'} className="text-white bg-stone-700 rounded-lg px-5  py-2 text-lg font-bold">LogIn</Link>
+                            : <div className="flex md:block">
+                                <Link to={'/logIn'} className="text-white bg-stone-700 rounded-lg px-3 hover:text-stone-700 border border-white hover:bg-white  py-1 text-base md:text-lg font-bold">LogIn</Link>
+                                <Link to={'/signup'} className="text-white bg-stone-700 rounded-lg px-3 ml-2 hover:text-stone-700 border border-white hover:bg-white py-1 text-base md:text-lg font-bold">Sign Up</Link>
+                            </div>
                     }
                 </div>
             </div>

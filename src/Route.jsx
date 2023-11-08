@@ -9,6 +9,7 @@ import BlogDetails from "./component/Page/BlogDetails";
 import Wishlist from "./component/Page/Wishlist";
 import BlogsAll from "./component/Page/BlogsAll";
 import UpdateBlog from "./component/Page/UpdateBlog";
+import FeatureBolgs from "./component/Page/FeatureBolgs";
 
 const router = createBrowserRouter([
     {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
             {
                 path: 'update/:id',
                 element: <UpdateBlog></UpdateBlog>
+            },
+            {
+                path: 'featureblog',
+                element: <FeatureBolgs></FeatureBolgs>
             },
 
         ]

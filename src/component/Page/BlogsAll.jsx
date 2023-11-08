@@ -34,7 +34,7 @@ const BlogsAll = () => {
     const haldelWishlistButton = (blog)=>{
         setLoading(true)
             const {_id:id,category,imgLink,postDate,shortDescription,title} = blog
-            const email = user.email;
+            const email = user?.email;
         const wishlistItem = {id,category,imgLink,postDate,shortDescription,title,email}
         axiosApi.post(wishlistUrl,wishlistItem)
         .then(res =>{
@@ -58,9 +58,9 @@ const BlogsAll = () => {
    
     return (
         <div className="bg-[#F1F2F2]">
-            <div className="h-20 bg-slate-300">
+            <div className="h-20 bg-slate-500 ">
             </div>
-            <div className="max-w-2xl mx-auto bg-white mb-2">
+            <div className="max-w-2xl mx-auto pt-2 bg-white mb-2">
                 <form className="md:flex items-center justify-between">
                 <div className="px-2 ">
                     <select name="category" className="border rounded-lg border-black font-medium p-3">

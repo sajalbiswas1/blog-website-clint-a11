@@ -56,13 +56,13 @@ const LogIn = () => {
 
 
     //toast
-    const notify = () => toast.success("LogIn Successfully!",{
+    const notify = () => toast.success("LogIn Successfully!", {
         position: toast.POSITION.TOP_CENTER
-      });
-    const notify2 = () => toast.error("email or password wrong",{
+    });
+    const notify2 = () => toast.error("email or password wrong", {
         position: toast.POSITION.TOP_CENTER
-      });
-    
+    });
+
 
 
     const handleLogin = (e) => {
@@ -92,45 +92,51 @@ const LogIn = () => {
 
 
     return (
-        <div data-aos="fade-up" className="lg:w-2/5 md:w-3/5 sm:w-4/5  m-auto border rounded-xl md:p-16 p-5 bg-gradient-to-r from-[#ffe5e5]  to-[#fdfdde]">
-        <h3 className="md:text-4xl text-2xl font-semibold text-center mb-4">SignIn</h3>
-        <p className="w-6 m-auto rounded-full flex justify-center mb-3 text-3xl  "><RiContactsLine className="w-5"></RiContactsLine></p>
-        <hr />
-        <form className="px-6 mt-4 mb-2" onSubmit={handleLogin}>
-            <p className="text-lg font-medium mb-2">Email address</p>
-            <input className="border w-full rounded-3xl text-base font-normal px-5 py-2 bg-[#F3F3F3]" type="email" required ref={emailRef} name="email" placeholder="Enter your email address" id="" /><br />
-            <p className="mt-3  text-lg font-medium mb-2">Password</p>
-            <div className="relative">
+
+        <div>
+            <div className="h-20 bg-slate-500">
+                {/* navbar bg */}
+            </div>
+            <div data-aos="fade-up" className="lg:w-2/5 md:w-3/5 sm:w-4/5 my-5  m-auto border rounded-xl md:p-16 p-5 bg-gradient-to-r from-[#ffe5e5]  to-[#fdfdde]">
+                <h3 className="md:text-4xl text-2xl font-semibold text-center mb-4">SignIn</h3>
+                <p className="w-6 m-auto rounded-full flex justify-center mb-3 text-3xl  "><RiContactsLine className="w-5"></RiContactsLine></p>
+                <hr />
+                <form className="px-6 mt-4 mb-2" onSubmit={handleLogin}>
+                    <p className="text-lg font-medium mb-2">Email address</p>
+                    <input className="border w-full rounded-3xl text-base font-normal px-5 py-2 bg-[#F3F3F3]" type="email" required ref={emailRef} name="email" placeholder="Enter your email address" id="" /><br />
+                    <p className="mt-3  text-lg font-medium mb-2">Password</p>
+                    <div className="relative">
+                        {
+                            show ? <span onClick={() => setShow(!show)} className="absolute text-xl right-4 bottom-1/3"><BsFillEyeFill></BsFillEyeFill> </span>
+                                : <span onClick={() => setShow(!show)} className="absolute text-xl right-4 bottom-1/3"><BsFillEyeSlashFill></BsFillEyeSlashFill> </span>
+                        }
+                        <input className=" border w-full text-base rounded-3xl font-normal px-5 py-2 bg-[#F3F3F3]" type={show ? 'text' : 'password'} name="password" placeholder="Enter your password" required id="10004" /><br />
+                    </div>
+                    <Link><p onClick={handleForget} className="hidden text-sm font-normal text-left mt-2 mb-2">Forgotten password? </p></Link>
+                    <input className=" text-white mt-5 rounded-3xl text-xl font-semibold px-5 py-2 w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500" type="submit" name="submit" value="Login " id="" />
+                </form>
                 {
-                    show ? <span onClick={() => setShow(!show)} className="absolute text-xl right-4 bottom-1/3"><BsFillEyeFill></BsFillEyeFill> </span>
-                        : <span onClick={() => setShow(!show)} className="absolute text-xl right-4 bottom-1/3"><BsFillEyeSlashFill></BsFillEyeSlashFill> </span>
+                    errorLogin && <p className="text-base font-semibold text-center mb-2 text-red-500">{errorLogin}</p>
                 }
-                <input className=" border w-full text-base rounded-3xl font-normal px-5 py-2 bg-[#F3F3F3]" type={show ? 'text' : 'password'} name="password" placeholder="Enter your password" required id="10004" /><br />
-            </div>
-            <Link><p onClick={handleForget} className="hidden text-sm font-normal text-left mt-2 mb-2">Forgotten password? </p></Link>
-            <input className=" text-white mt-5 rounded-3xl text-xl font-semibold px-5 py-2 w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500" type="submit" name="submit" value="Login " id="" />
-        </form>
-        {
-            errorLogin && <p className="text-base font-semibold text-center mb-2 text-red-500">{errorLogin}</p>
-        }
-        {
-            success && <p className="text-base font-semibold text-center mb-2 text-green-400">{success}</p>
-        }
-        <div className="flex items-center justify-center mx-6 mt-4 gap-2 text-lg font-bold"> <hr className="border-black w-1/6" /> <span>Or</span> <hr className="border-black w-1/6" /></div>
-        <div className="md:w-8/12 m-auto">
-            <div onClick={handleGoogleLogin} className='flex rounded-3xl items-center hover:text-blue-700 mt-5  mx-2 py-2 justify-center gap-3 hover:border-blue-700 border-2 mb-4 border-black'>
-                <AiOutlineGoogle></AiOutlineGoogle>
-                <Link>LogIn with google</Link>
-            </div>
-            <div className='flex items-center hover:text-blue-700  mx-2 py-2 justify-center gap-3 hover:border-blue-700 rounded-3xl border-2 mb-4 border-black'>
-                <AiOutlineGithub></AiOutlineGithub>
-                <p>LogIn with github</p>
+                {
+                    success && <p className="text-base font-semibold text-center mb-2 text-green-400">{success}</p>
+                }
+                <div className="flex items-center justify-center mx-6 mt-4 gap-2 text-lg font-bold"> <hr className="border-black w-1/6" /> <span>Or</span> <hr className="border-black w-1/6" /></div>
+                <div className="md:w-8/12 m-auto">
+                    <div onClick={handleGoogleLogin} className='flex rounded-3xl items-center hover:text-blue-700 mt-5  mx-2 py-2 justify-center gap-3 hover:border-blue-700 border-2 mb-4 border-black'>
+                        <AiOutlineGoogle></AiOutlineGoogle>
+                        <Link>LogIn with google</Link>
+                    </div>
+                    <div className='flex items-center hover:text-blue-700  mx-2 py-2 justify-center gap-3 hover:border-blue-700 rounded-3xl border-2 mb-4 border-black'>
+                        <AiOutlineGithub></AiOutlineGithub>
+                        <p>LogIn with github</p>
+                    </div>
+                </div>
+
+                <p className="text-base font-semibold text-center">Do not Have An Account? <Link className="text-[#5b66e0]" to={'/signup'}> Register</Link></p>
+                <ToastContainer />
             </div>
         </div>
-
-        <p className="text-base font-semibold text-center">Do not Have An Account? <Link className="text-[#5b66e0]" to={'/signup'}> Register</Link></p>
-        <ToastContainer />
-    </div>
     );
 };
 
