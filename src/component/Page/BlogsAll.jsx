@@ -17,9 +17,11 @@ const BlogsAll = () => {
     const [blogs, setBlogs] = useState([])
     const [blogsFilter, setBlogsFilter] = useState(blogs)
     const [isLoading, setLoading] = useState(false)
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const [inputCategory,setInputCategory]= useState('')
     const url = '/blogs'
     const wishlistUrl = '/wishlists'
+    const categoryUrl = `/blogs/category/?category=${inputCategory}`
 
     useEffect(() => {
         axiosApi.get(url)
@@ -63,17 +65,21 @@ const BlogsAll = () => {
     const notify = () => toast.success("Wishlist Add");
     const notify1 = () => toast.error("Please LogIn First");
     console.log(postWishlistData)
+// category data collect
+    useEffect(()=>{
+        axiosApi.get(categoryUrl)
+        .then(res=>{
+            console.log(res.data)
+            setBlogsFilter(res.data)
+        })
+        .catch(error=>{
+            console.log(error)
+        })
+    },[axiosApi, categoryUrl])
+    //category handle onchange
     const handleCategory = (e) => {
         const selectValue = e.target.value
-        if (selectValue == "All") {
-            setBlogsFilter(blogs)
-            return;
-        }
-        const filterCategory = blogs.filter(blog => blog.category == selectValue)
-        setBlogsFilter(filterCategory)
-        console.log(filterCategory)
-
-
+        setInputCategory(selectValue)
     }
     const handleForm = (e) => {
         e.preventDefault()
@@ -82,7 +88,6 @@ const BlogsAll = () => {
         console.log(getBlogs)
         setBlogsFilter(getBlogs)
         if (getBlogs.length == 0) {
-            console.log('nodaldkfj')
             return <div>No data</div>;
         }
 
