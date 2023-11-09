@@ -41,7 +41,7 @@ const TableReact = () => {
     ]
    
     console.log(allData)
-const data = allData.sort( (a,b)=> b.longDescription.length - a.longDescription.length ).map((tData, index) => {
+const data = allData.slice(0,10).sort( (a,b)=> b.longDescription.length - a.longDescription.length ).map((tData, index) => {
     return {
         no: index +1,
         title: tData.title,

@@ -27,7 +27,7 @@ const CommentPostDate = `${year}-${month.toString().padStart(2, '0')}-${day.toSt
 
 
 
-    const { imgLink, shortDescription, title, longDescription,userEmail,postDate } = blog
+    const { imgLink, shortDescription, title, longDescription,userEmail } = blog
 
 
     // get blog data
@@ -106,7 +106,7 @@ const CommentPostDate = `${year}-${month.toString().padStart(2, '0')}-${day.toSt
                 <h3 className='px-5 font-bold text-3xl mt-4'>{title}</h3>
                 <p className='px-5 mb-4 text-xl mt-3'>{shortDescription}</p><br />
                 <p className='px-5 mb-4 text-xl'>{longDescription}</p>
-                <p className='px-5 mb-4 text-lg font-medium'>Post: <span className="text-sm">{postDate}</span></p>
+                {/* <p className='px-5 mb-4 text-lg font-medium'>Post: <span className="text-sm">{postDate}</span></p> */}
                 
                 {
                     userEmail == user?.email ? <Link to={`/update/${id}`}><button className="border text-xl font-semibold px-5 py-2 rounded-lg m-4 bg-stone-500 text-white hover:bg-stone-700">Update</button></Link>
