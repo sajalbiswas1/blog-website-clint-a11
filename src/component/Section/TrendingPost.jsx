@@ -37,8 +37,8 @@ const TrendingPost = () => {
                             <div className="p-5 ">
                                 <h1 className="text-xl font-bold">{blog.title}</h1>
                                 <div className="flex justify-between mt-3 items-center">
-                                    <p className="flex items-center gap-2"><FcBusinessman></FcBusinessman>{blog.userName}</p>
-                                    <p className="flex items-center gap-2"><SlCalender></SlCalender>{blog.postDate.slice(0, 10)}</p>
+                                    <p className="flex  items-center gap-2"><FcBusinessman></FcBusinessman>{blog.userName}</p>
+                                    <p className="flex text-sm items-center gap-2"><SlCalender></SlCalender>{blog.postDate.slice(0, 10)}</p>
                                 </div>
                             </div>
                         </div></Link>
