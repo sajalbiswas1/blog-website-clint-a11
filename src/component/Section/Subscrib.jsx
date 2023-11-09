@@ -17,7 +17,7 @@ const Subscrib = () => {
             <form onSubmit={handleSubscribe}>
                 
                 <input className="border border-black rounded-lg py-2 px-3" placeholder="Your email address" type="email" name="email" /><br />
-                <input className="bg-red-600 text-white font-bold px-6 py-2 mb-5 rounded-lg my-3" type="submit" value="Submit" name="" id="" />
+                <input className="bg-red-600 text-white font-bold px-6 py-2 mb-5 rounded-lg my-3" type="submit" value="SUBSCRIBE" name="" id="" />
             </form>
             
         </div>

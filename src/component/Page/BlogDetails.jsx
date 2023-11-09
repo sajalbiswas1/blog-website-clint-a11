@@ -11,12 +11,23 @@ const BlogDetails = () => {
     const [blog,setBlogs] = useState([]);
     const [commentData,setCommentData] = useState([])
     const axiosApi = useAxiosApi();
-    const postDate = new Date()
     const url = `/blogs/${id}` // get data , specific id url
     const CommentUrl = `/blogs/comments` //  comment post data url
     const allCommentUrl = `/blogsComments/${id}` // get all comment this blog url
 
-    const { imgLink, shortDescription, title, longDescription,userEmail } = blog
+    const CommentPostData = new Date()
+
+    
+const year = CommentPostData.getFullYear();
+const month = CommentPostData.getMonth() + 1; // Month is 0-based, so add 1
+const day = CommentPostData.getDate();
+
+// Format the date as "YYYY-MM-DD" (e.g., "2023-11-09")
+const CommentPostDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+
+
+
+    const { imgLink, shortDescription, title, longDescription,userEmail,postDate } = blog
 
 
     // get blog data
@@ -44,7 +55,7 @@ const BlogDetails = () => {
         const userName = user?.displayName
         const commentId = id
         console.log(userComment)
-        const commentPost = { userName, userImg, commentId, userComment, postDate }
+        const commentPost = { userName, userImg, commentId, userComment, CommentPostDate }
         if (/[A-Z]/.test(userComment) || /[a-z]/.test(userComment) || /\d/.test(userComment) || /[@$!%*?&]/.test(userComment)) {
             setEmptyField('')
             // mutate(commentPost)
@@ -88,16 +99,21 @@ const BlogDetails = () => {
             <div className="h-20 bg-slate-500">
 
             </div>
+            <h3 className="text-3xl  md:max-w-4xl mt-8 w-11/12 px-2 m-auto mb-10 border-l-rose-600 border-l-4 font-bold">Blog Details</h3>
+
             <div className='border max-w-4xl  mt-2 bg-white mx-auto mb-5'>
                 <img className='max-h-72 w-full  object-cover' src={imgLink} alt='blog image' />
                 <h3 className='px-5 font-bold text-3xl mt-4'>{title}</h3>
                 <p className='px-5 mb-4 text-xl mt-3'>{shortDescription}</p><br />
                 <p className='px-5 mb-4 text-xl'>{longDescription}</p>
+                <p className='px-5 mb-4 text-lg font-medium'>Post: <span className="text-sm">{postDate}</span></p>
+                
                 {
                     userEmail == user?.email ? <Link to={`/update/${id}`}><button className="border text-xl font-semibold px-5 py-2 rounded-lg m-4 bg-stone-500 text-white hover:bg-stone-700">Update</button></Link>
                     : ''
                 }
             </div>
+            
             <div className="max-w-4xl mx-auto p-5 bg-white">
                 <h2 className="text-2xl font-bold ">Comment ({commentData.length})</h2>
                 <div className="flex gap-5 py-5">
@@ -117,7 +133,7 @@ const BlogDetails = () => {
                             <div className="flex gap-2 mb-5">
                             <img className="w-10 h-10 mt-2 rounded-full" src={comment?.userImg} alt="" />
                             <div className="border rounded-xl w-full p-3">
-                                <h2 className="mb-2 font-bold text-xl">{comment.userName}   </h2>
+                                <h2 className="mb-2 font-bold text-xl">{comment.userName} <span className="text-sm font-light">{comment.CommentPostDate}</span></h2>
                                 <p className="text-xl">{comment.userComment}</p>
                             </div>
                             </div>

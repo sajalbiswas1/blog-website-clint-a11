@@ -6,6 +6,7 @@ import BlogAllCard from "./BlogAllCard";
 import { useNavigate } from "react-router-dom";
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import NoData from "../CoustomToast/NoData";
 
 
 const BlogsAll = () => {
@@ -14,6 +15,7 @@ const BlogsAll = () => {
     const axiosApi = useAxiosApi();
     // const [postWishlist,setPostWishlist]= useState({})
     const [blogs,setBlogs]= useState([])
+    const [blogsFilter,setBlogsFilter]= useState(blogs)
     const [isLoading, setLoading]= useState(false)
     const navigate = useNavigate()
     const url = '/blogs'
@@ -24,6 +26,7 @@ const BlogsAll = () => {
         .then(res =>{
             console.log(res.data)
             setBlogs(res.data)
+            setBlogsFilter(res.data)
         })
         .catch(error =>{
             console.log(error)
@@ -55,15 +58,44 @@ const BlogsAll = () => {
     //toast
     const notify = () => toast.success("Wishlist Add");
     console.log(postWishlistData)
+    const handleCategory = (e)=>{
+        const selectValue = e.target.value
+        if(selectValue == "All"){
+            setBlogsFilter(blogs)
+            return;
+        }
+        const filterCategory = blogs.filter(blog => blog.category == selectValue )
+        setBlogsFilter(filterCategory)
+        console.log(filterCategory)
+
+      
+    }
+    const handleForm = (e)=>{
+        e.preventDefault()
+        const searchValue = e.target.text.value;
+        const getBlogs = blogs.filter(a => a.title.toLowerCase().includes(searchValue.toLowerCase()))
+        console.log(getBlogs)
+        setBlogsFilter(getBlogs)
+        if(getBlogs.length == 0){
+            console.log('nodaldkfj')
+           return <div>No data</div>;
+        }
+        
+       
+      
+    }
+
    
     return (
         <div className="bg-[#F1F2F2]">
             <div className="h-20 bg-slate-500 ">
             </div>
-            <div className="max-w-2xl mx-auto pt-2 bg-white mb-2">
-                <form className="md:flex items-center justify-between">
+            <h3 className="text-3xl  md:max-w-2xl mt-8 w-11/12 px-2 m-auto mb-10 border-l-rose-600 border-l-4 font-bold">All Blogs</h3>
+
+            <div className="max-w-2xl mx-auto pt-2 bg-white mb-">
+                <form onSubmit={handleForm} className="md:flex items-center justify-between">
                 <div className="px-2 ">
-                    <select name="category" className="border rounded-lg border-black font-medium p-3">
+                    <select name="category"  onChange={handleCategory} className="border rounded-lg border-black font-medium p-3">
                         <option value="All">All</option>
                         <option value="Technology">Technology</option>
                         <option value="Programming">Programming</option>
@@ -82,7 +114,8 @@ const BlogsAll = () => {
                 </form>
             </div>
             {
-                blogs?.map((blog,index) => <BlogAllCard
+                blogsFilter.length == 0 ? <NoData></NoData>:
+                blogsFilter?.map((blog,index) => <BlogAllCard
                     key={index} 
                     blog={blog}
                     isLoading={isLoading} 

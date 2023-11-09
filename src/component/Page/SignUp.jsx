@@ -11,7 +11,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const SignUp = () => {
 
-    const { handleRegister, userProfileUpdate } = useContext(AuthContext);
+    const { userSignIn, userProfileUpdate } = useContext(AuthContext);
     const [errorRegister, setErrorRegister] = useState('');
     const [show, setShow] = useState(false);
     const navigate = useNavigate()
@@ -72,7 +72,7 @@ const SignUp = () => {
             return;
         }
 
-        handleRegister(email, password)
+        userSignIn(email, password)
             .then(result => {
                 notify()
                 userUpdate()
