@@ -1,4 +1,4 @@
-import { Link, createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import Root from "./component/Root/Root";
 import Home from "./component/Home/Home";
 import LogIn from "./component/Page/LogIn";
@@ -11,12 +11,13 @@ import BlogsAll from "./component/Page/BlogsAll";
 import UpdateBlog from "./component/Page/UpdateBlog";
 import FeatureBolgs from "./component/Page/FeatureBolgs";
 import PrivetRoute from "./PrivetRoute/PrivetRoute";
+import ErrorElement from "./component/ErrorElement";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Root></Root>,
-        errorElement: <div><p>This Error</p><Link to={'/'}>Home</Link></div>,
+        errorElement: <ErrorElement></ErrorElement>,
         children:[
             {
                 path:'/',
