@@ -29,7 +29,13 @@ const RecentBlogs = () => {
     }
 
     const notify = () => toast.success("Wishlist Add");
+    const notify1 = () => toast.error("Please LogIn First");
+    
     const haldelWishlist = (blog)=>{
+        if (!user?.email) {
+            notify1()
+            return;
+        }
         const {_id:id,category,imgLink,postDate,shortDescription,title} = blog
         const email = user.email;
     const wishlistItem = {id,category,imgLink,postDate,shortDescription,title,email}

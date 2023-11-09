@@ -10,6 +10,7 @@ import Wishlist from "./component/Page/Wishlist";
 import BlogsAll from "./component/Page/BlogsAll";
 import UpdateBlog from "./component/Page/UpdateBlog";
 import FeatureBolgs from "./component/Page/FeatureBolgs";
+import PrivetRoute from "./PrivetRoute/PrivetRoute";
 
 const router = createBrowserRouter([
     {
@@ -31,15 +32,15 @@ const router = createBrowserRouter([
             },
             {
                 path:'addblog',
-                element: <AddBlog></AddBlog>
+                element: <PrivetRoute><AddBlog></AddBlog></PrivetRoute>
             },
             {
                 path: 'details/:id',
-                element: <BlogDetails></BlogDetails>
+                element: <PrivetRoute><BlogDetails></BlogDetails></PrivetRoute>
             },
             {
                 path: 'wishlist',
-                element: <Wishlist></Wishlist>
+                element: <PrivetRoute><Wishlist></Wishlist></PrivetRoute>
             },
             {
                 path: 'blogsall',
@@ -47,7 +48,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'update/:id',
-                element: <UpdateBlog></UpdateBlog>
+                element: <PrivetRoute><UpdateBlog></UpdateBlog></PrivetRoute>
             },
             {
                 path: 'featureblog',
