@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs';
 import { RiContactsLine } from 'react-icons/ri';
@@ -6,12 +6,12 @@ import { AiOutlineGithub, AiOutlineGoogle } from "react-icons/ai";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { AuthContext } from "../../AuthProvider/AuthProvider";
+// import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 
 const LogIn = () => {
 
-    const { userLogin, changePassword, googleLogin } = useContext(AuthContext);
+    const { userLogin, changePassword, googleLogin } = useState()//useContext(AuthContext);
     const [show, setShow] = useState(false);
     const [errorLogin, setErrorLogin] = useState('');
     const [success, setSuccess] = useState('');

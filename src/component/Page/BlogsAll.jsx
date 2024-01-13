@@ -106,7 +106,7 @@ const BlogsAll = () => {
                 <form onSubmit={handleForm} className="md:flex items-center justify-between">
                     <div className="px-2 ">
                         <select name="category" onChange={handleCategory} className="border rounded-lg border-black font-medium p-3">
-                            <option value="All">All</option>
+                            <option value="">All</option>
                             <option value="Technology">Technology</option>
                             <option value="Programming">Programming</option>
                             <option value="Travel">Travel</option>
