@@ -7,7 +7,7 @@ const Banner = () => {
     //     "url(https://i.ibb.co/jGVKrTd/43d3c663-e800-45d4-89c5-5a3e567cc12c.jpg)",
     // }}
     >
-      <div className="hero-overlay bg-opacity-60"></div>
+      {/* <div className="hero-overlay bg-opacity-60"></div>
       <div className="hero-content text-center text-white">
         <div className="">
           <h1 className="mb-5 text-5xl font-bold">
@@ -20,7 +20,7 @@ const Banner = () => {
           </p>
           <button className="btn btn-primary">Get Started</button>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
